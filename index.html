@@ -1,119 +1,335 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Michael Vinh Pham</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+      :root {
+        --bg: #ffffff;
+        --bg-alt: #f0e9df;
+        --text: #3b3631;
+        --text-muted: #7a7168;
+        --accent: #c4704b;
+        --accent-hover: #a85a38;
+        --border: #d9cfc3;
+        --link: #b05c3a;
+        --mono: 'Courier New', Courier, monospace;
+        --sans: Georgia, 'Times New Roman', serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
       body {
-        font-family: 'Roboto', sans-serif;
-        background-color: #121212;
-        color: #f5f5f5;
+        font-family: var(--sans);
+        background-color: var(--bg);
+        color: var(--text);
+        font-size: 16px;
+        line-height: 1.7;
       }
-      .container {
-        max-width: 1140px;
+
+      .page {
+        max-width: 700px;
         margin: 0 auto;
+        padding: 40px 24px 60px;
       }
-      h4 {
-        color: #64b5f6;
-        border-bottom: 2px solid #64b5f6;
-        padding-bottom: 8px;
-        margin-top: 30px;
-        margin-bottom: 20px;
+
+      /* --- Header / Title --- */
+      .site-header {
+        text-align: center;
+        margin-bottom: 8px;
       }
+
+      .site-header h1 {
+        font-family: var(--mono);
+        font-size: 13px;
+        font-weight: normal;
+        letter-spacing: 0;
+        text-transform: none;
+        color: var(--text-muted);
+      }
+
+      .site-nav {
+        font-family: var(--mono);
+        font-size: 12px;
+        margin-top: 6px;
+      }
+
+      .site-nav a {
+        color: var(--text-muted);
+        border-bottom: none;
+        margin: 0 8px;
+      }
+
+      .site-nav a:hover {
+        color: var(--accent);
+        border-bottom: none;
+      }
+
+      .site-nav a.active {
+        color: var(--accent);
+      }
+
+      .site-nav .sep {
+        color: var(--border);
+      }
+
+      /* --- Horizontal Rules (the 90s staple) --- */
+      hr {
+        border: none;
+        height: 1px;
+        background: var(--border);
+        margin: 24px 0;
+      }
+
+      hr.thick {
+        height: 2px;
+        background: linear-gradient(to right, transparent, var(--accent), transparent);
+        margin: 20px 0 28px;
+      }
+
+      /* --- Profile Section --- */
+      .profile {
+        display: flex;
+        gap: 28px;
+        align-items: flex-start;
+      }
+
+      .profile-photo {
+        flex-shrink: 0;
+      }
+
+      .profile-photo img {
+        width: 160px;
+        border: 2px solid var(--border);
+        border-radius: 4px;
+      }
+
+      .profile-photo figcaption {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-muted);
+        text-align: center;
+        margin-top: 6px;
+        max-width: 160px;
+        line-height: 1.4;
+      }
+
+      .profile-info p {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-bottom: 12px;
+      }
+
+      /* --- Links --- */
       a {
-        color: #64b5f6;
+        color: var(--link);
         text-decoration: none;
-        transition: color 0.3s;
+        border-bottom: 1px dotted var(--link);
+        transition: color 0.15s, border-color 0.15s;
       }
+
       a:hover {
-        color: #90caf9;
-        text-decoration: underline;
+        color: var(--accent-hover);
+        border-bottom-style: solid;
       }
-      .profile-img {
-        border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+
+      /* --- Contact List --- */
+      .contact-list {
+        list-style: none;
+        font-family: var(--mono);
+        font-size: 14px;
+        padding: 12px 16px;
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 3px;
       }
+
       .contact-list li {
-        margin-bottom: 10px;
+        margin-bottom: 4px;
       }
-      .paper-item {
-        margin-bottom: 25px;
-        padding-left: 15px;
-        border-left: 3px solid #64b5f6;
+
+      .contact-list li:last-child {
+        margin-bottom: 0;
       }
-      .paper-abstract {
-        font-style: italic;
-        color: #bbbbbb;
+
+      .contact-list li::before {
+        content: "> ";
+        color: var(--accent);
+      }
+
+      /* --- Section Headers --- */
+      h2 {
+        font-family: var(--mono);
+        font-size: 15px;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--accent);
+        margin-bottom: 16px;
+      }
+
+      h2::before {
+        content: "# ";
+      }
+
+      /* --- Paper Items --- */
+      .paper {
+        margin-bottom: 28px;
+        padding-left: 16px;
+        border-left: 2px solid var(--border);
+      }
+
+      .paper:hover {
+        border-left-color: var(--accent);
+      }
+
+      .paper .title {
+        font-weight: bold;
+      }
+
+      .paper .meta {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--text-muted);
+        margin-top: 2px;
+      }
+
+      .paper .abstract {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--text-muted);
         margin-top: 8px;
-        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      .paper .abstract summary {
+        cursor: pointer;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+
+      .paper .abstract summary:hover {
+        color: var(--accent-hover);
+      }
+
+      /* --- Footer --- */
+      .site-footer {
+        text-align: center;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 12px;
+      }
+
+      /* --- Responsive --- */
+      @media (max-width: 560px) {
+        .profile {
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+        }
+
+        .profile-photo img {
+          width: 140px;
+        }
+
+        .contact-list {
+          text-align: left;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="container py-5">
-      <div class="row">
-        <div class="col-md-3">
-          <h4 class="text-center">Michael Vinh Pham</h4>
-          <figure class="text-center">
-            <img src="files/me2.png" alt="Michael Pham" class="img-fluid profile-img">
-            <figcaption class="mt-2 text-muted">me exploring the Kasbah when studying abroad!</figcaption>
-          </figure>
-        </div>
+    <div class="page">
+      <header class="site-header">
+        <h1>Michael Vinh Pham</h1>
+        <nav class="site-nav">
+          <a href="index.html" class="active">~ home ~</a>
+          <span class="sep">|</span>
+          <a href="blog.html">~ things i'm working on ~</a>
+        </nav>
+      </header>
 
-        <div class="col-md-9">
-          <h4>Contact</h4>
-          <ul class="list-unstyled contact-list">
-            <li><i class="fa-solid fa-envelope me-2"></i> mpham1 (at) swarthmore (dot) edu</li>
-            <li><i class="fa-brands fa-github me-2"></i> <a href="https://github.com/mpham8" target="_blank">github</a></li>
-            <li><i class="fa-solid fa-file-lines me-2"></i> <a href="files/resume_june2025.pdf" target="_blank">curriculum vitae</a></li>
-            <li><i class="fa-brands fa-linkedin me-2"></i> <a href="https://www.linkedin.com/in/michael-vinh-pham/" target="_blank">linkedin</a></li>
-          </ul>
-          
-          <h4>About Me</h4>
-          <p>I will be joining the New York Fed as an RA after graduation. I was previously an undergrad at Swarthmore College studying math and econ. I'm interested in computational methods and machine learning applications to economics. At the moment, my hobbies include backpacking and learning languages (am currently learning Mandarin and French).</p>
+      <div class="profile">
+        <figure class="profile-photo">
+          <img src="files/me2.png" alt="Michael Pham">
+          <figcaption>me exploring the Kasbah while studying abroad!</figcaption>
+        </figure>
+
+        <div class="profile-info">
+          <p>I am currently a research assistant at the New York Fed doing research in computational macro theory (Heterogenous Agent New Keynesian and Representative DSGE models). I was previously an undergrad at Swarthmore studying math and econ. My research interests are in sequential decision problems: from solving macro models with heterogeneous agents to reinforcement learning in multi-agent systems.</p>
+          <p>At the moment, my hobbies include learning Mandarin.</p>
         </div>
       </div>
-    </div>
 
-    <div class="container">
-      <h4>Research</h4>
-      <div class="paper-item">
-        <a href="" target="_blank">Estimating Intergenerational Effects of Early Age Human Capital Investment</a> (2025) Stephen O'Connell, Michael Vinh Pham. Working Paper.
-        <p class="paper-abstract">Should public spending on early-age human capital formation be protected
-          during a fiscal consolidation? The question is relevant to countries throughout the global
-          income distribution. We address it using a DSGE with overlapping generations in which
-          parental inputs are combined with public resources to produce skills that become
-          productive when children reach adulthood. Private inputs are subject to a borrowing
-          constraint, and potentially also to parental misperceptions of the human capital
-          production function. We show how to calibrate a DSGE like ours to match these distortions
-          in the data. We then use stochastic simulations to quantify the impact of reductions of
-          public support to early-age human capital formation on lifetime income and wage
-          inequality within the affected cohorts, and on the intergenerational transmission of
-          inequality.</p>
-      </div>
-      
-      <div class="paper-item">
-        <a href="files/la_may2025.pdf" target="_blank">Barking up the Wrong Tree? Multifamily Housing and Tree Loss: Evidence from Los Angeles</a> (2025) Michael Vinh Pham. Working Paper.
-        <p class="paper-abstract">This paper evaluates how the construction of multi-family properties in Los Angeles affect the neighborhood characteristic nearby as defined as greenery coverage. I create address-level panel data by employing computer vision techniques applied to street-level imagery and use difference-in-differences estimators. I find that multi-family development has no negative effect on nearby tree and greenery coverage and may even contribute to a modest increase, with estimates indicating a statistically significant 2.3% rise in total greenery (trees and shrubs) coverage.</p>
-      </div>
-      
-      <div class="paper-item">
-        <a href="files/seguro_august.pdf" target="_blank">How Universal Healthcare Affects Individuals' Choices: The Case of Seguro Popular</a> (2024) Michael Vinh Pham. Advanced Econometrics Final Paper.
-        <p class="paper-abstract">This paper assesses the effects of Seguro Popular, a universal healthcare program implemented in Mexico, on individuals' labor force participation, family planning, and the take-up of womens' preventative cancer screenings. I exploit variation in roll-out of municipalities to find the intent-to-treatment effect and use a machine learning based method, Matrix Completion, to assess the robustness of these effects. I find that the implementation of Seguro Popular increases the target demographic for Mammogram take-up of such exams, has no significant effect on take-up of Papanicolaou Tests, and find some evidence to support the claim that Seguro Popular increased the amount of children women wanted to have. Finally, Seguro Popular had a negative effect on labor force participation, most notably among working males.</p>
-      </div>
-    </div>
+      <hr>
 
-    <div class="container mb-5">
-      <h4>Non-Econ Research</h4>
-      <div class="paper-item">
-        <a href="https://kdd.org/kdd2023/wp-content/uploads/2023/08/murungi2023trends.pdf" target="_blank">Empowering Computer Science Students in Electroencephalography (EEG) Analysis: A Review of Machine Learning Algorithms for EEG Datasets</a> (2023) Nathan Koome Murungi, Michael Vinh Pham, Xufeng Caesar Dai, Xiaodong Qu. <b>KDD-UC 2023.</b>
-        <p class="paper-abstract">In this paper, we present a systematic literature review that explores the utilization of machine learning (ML) algorithms for analyzing datasets from Electroencephalography (EEG) based Brain-Computer Interfaces (BCIs). Our primary aim is to provide computer science students with a comprehensive and accessible overview of the role of machine learning in EEG analysis. By synthesizing and organizing recent research from 2020 onwards, our objective is to empower the target audience to develop a solid foundational understanding of the current state of ML-EEG research. Through this work, we intend to enhance the accessibility and comprehension of ML-EEG studies and contribute to advancing BCI technology.</p>
+      <h2>Contact</h2>
+      <ul class="contact-list">
+        <li>mpham1 (at) swarthmore (dot) edu</li>
+        <li><a href="https://github.com/mpham8" target="_blank">github.com/mpham8</a></li>
+        <li><a href="files/resume_june2025.pdf" target="_blank">curriculum vitae</a></li>
+        <li><a href="https://www.linkedin.com/in/michael-vinh-pham/" target="_blank">linkedin</a></li>
+      </ul>
+
+      <hr>
+
+      <h2>Working Papers</h2>
+
+      <div class="paper">
+        <a href="" target="_blank" class="title">Estimating Intergenerational Effects of Early Age Human Capital Investment</a>
+        <div class="meta">Stephen O'Connell, Michael Vinh Pham &middot; 2025 &middot; Working Paper</div>
+        <div class="abstract">
+          <details>
+            <summary>[read abstract]</summary>
+            Should public spending on early-age human capital formation be protected during a fiscal consolidation? The question is relevant to countries throughout the global income distribution. We address it using a DSGE with overlapping generations in which parental inputs are combined with public resources to produce skills that become productive when children reach adulthood. Private inputs are subject to a borrowing constraint, and potentially also to parental misperceptions of the human capital production function. We show how to calibrate a DSGE like ours to match these distortions in the data. We then use stochastic simulations to quantify the impact of reductions of public support to early-age human capital formation on lifetime income and wage inequality within the affected cohorts, and on the intergenerational transmission of inequality.
+          </details>
+        </div>
       </div>
+
+      <div class="paper">
+        <a href="files/la_may2025.pdf" target="_blank" class="title">Barking up the Wrong Tree? Multifamily Housing and Tree Loss: Evidence from Los Angeles</a>
+        <div class="meta">Michael Vinh Pham &middot; 2025 &middot; Working Paper</div>
+        <div class="abstract">
+          <details>
+            <summary>[read abstract]</summary>
+            This paper evaluates how the construction of multi-family properties in Los Angeles affect the neighborhood characteristic nearby as defined as greenery coverage. I create address-level panel data by employing computer vision techniques applied to street-level imagery and use difference-in-differences estimators. I find that multi-family development has no negative effect on nearby tree and greenery coverage and may even contribute to a modest increase, with estimates indicating a statistically significant 2.3% rise in total greenery (trees and shrubs) coverage.
+          </details>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Published Works</h2>
+
+      <div class="paper">
+        <a href="https://kdd.org/kdd2023/wp-content/uploads/2023/08/murungi2023trends.pdf" target="_blank" class="title">Empowering Computer Science Students in Electroencephalography (EEG) Analysis: A Review of Machine Learning Algorithms for EEG Datasets</a>
+        <div class="meta">Nathan Koome Murungi, Michael Vinh Pham, Xufeng Caesar Dai, Xiaodong Qu &middot; KDD-UC 2023</div>
+        <div class="abstract">
+          <details>
+            <summary>[read abstract]</summary>
+            In this paper, we present a systematic literature review that explores the utilization of machine learning (ML) algorithms for analyzing datasets from Electroencephalography (EEG) based Brain-Computer Interfaces (BCIs). Our primary aim is to provide computer science students with a comprehensive and accessible overview of the role of machine learning in EEG analysis. By synthesizing and organizing recent research from 2020 onwards, our objective is to empower the target audience to develop a solid foundational understanding of the current state of ML-EEG research. Through this work, we intend to enhance the accessibility and comprehension of ML-EEG studies and contribute to advancing BCI technology.
+          </details>
+        </div>
+      </div>
+
+      <hr>
+
+      <h2>Articles</h2>
+
+      <div class="paper">
+        <a href="https://libertystreeteconomics.newyorkfed.org/2025/12/the-new-york-fed-dsge-model-forecast-december-2025/" target="_blank" class="title">The New York Fed DSGE Model Forecast -- December 2025</a>
+        <div class="meta">Marco Del Negro, Ibrahima Diagne, Keshav Dogra, Elena Elbarmi, Donggyu Lee, Michael Pham &middot; Liberty Street Economics &middot; 2025</div>
+      </div>
+
     </div>
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
