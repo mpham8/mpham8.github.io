@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>things i'm working on - Michael Vinh Pham</title>
+    <title>Michael Vinh Pham</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
       :root {
         --bg: #ffffff;
@@ -96,7 +97,15 @@
         border-bottom-style: solid;
       }
 
-      h2 {
+      /* --- Post Content --- */
+      .post-content {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--text-muted);
+        line-height: 1.7;
+      }
+
+      .post-content h1 {
         font-family: var(--mono);
         font-size: 15px;
         font-weight: normal;
@@ -106,40 +115,92 @@
         margin-bottom: 16px;
       }
 
-      h2::before {
+      .post-content h1::before {
         content: "# ";
       }
 
-      .post {
-        margin-bottom: 32px;
-        padding-left: 16px;
-        border-left: 2px solid var(--border);
-      }
-
-      .post:hover {
-        border-left-color: var(--accent);
-      }
-
-      .post .post-title {
-        font-weight: bold;
-      }
-
-      .post .post-date {
+      .post-content h2 {
         font-family: var(--mono);
-        font-size: 12px;
-        color: var(--text-muted);
-        margin-top: 2px;
+        font-size: 14px;
+        font-weight: normal;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--accent);
+        margin-top: 28px;
+        margin-bottom: 12px;
       }
 
-      .post .post-body {
+      .post-content h2::before {
+        content: "## ";
+      }
+
+      .post-content h3 {
         font-family: var(--mono);
         font-size: 13px;
-        color: var(--text-muted);
-        margin-top: 8px;
-        line-height: 1.6;
+        font-weight: bold;
+        color: var(--accent);
+        margin-top: 24px;
+        margin-bottom: 8px;
       }
 
-      .empty-state {
+      .post-content p {
+        margin-bottom: 14px;
+      }
+
+      .post-content ul, .post-content ol {
+        margin-bottom: 14px;
+        padding-left: 24px;
+      }
+
+      .post-content li {
+        margin-bottom: 4px;
+      }
+
+      .post-content li::marker {
+        color: var(--accent);
+      }
+
+      .post-content code {
+        font-family: var(--mono);
+        font-size: 12px;
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 1px 5px;
+      }
+
+      .post-content pre {
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        padding: 14px 16px;
+        overflow-x: auto;
+        margin-bottom: 16px;
+      }
+
+      .post-content pre code {
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 12px;
+        line-height: 1.5;
+      }
+
+      .post-content blockquote {
+        border-left: 2px solid var(--accent);
+        padding-left: 16px;
+        color: var(--text-muted);
+        margin-bottom: 14px;
+      }
+
+      .back-link {
+        font-family: var(--mono);
+        font-size: 12px;
+        display: inline-block;
+        margin-bottom: 20px;
+      }
+
+      .error-state {
         font-family: var(--mono);
         font-size: 13px;
         color: var(--text-muted);
@@ -164,35 +225,36 @@
 
       <hr>
 
-      <h2>Things I'm Working On</h2>
+      <a href="blog.html" class="back-link">&larr; back to all posts</a>
 
-      <div id="posts-container">
-        <div class="empty-state">loading...</div>
+      <div id="post-content" class="post-content">
+        <div class="error-state">loading...</div>
       </div>
 
     </div>
     <script>
-      fetch('blogs/posts.json')
-        .then(r => r.json())
-        .then(posts => {
-          const container = document.getElementById('posts-container');
-          if (!posts.length) {
-            container.innerHTML = '<div class="empty-state">nothing here yet -- check back soon.</div>';
-            return;
-          }
-          posts.sort((a, b) => b.date.localeCompare(a.date));
-          container.innerHTML = posts.map(p => `
-            <div class="post">
-              <a href="post.html?slug=${p.slug}" class="post-title">${p.title}</a>
-              <div class="post-date">${p.date}</div>
-              <div class="post-body">${p.description}</div>
-            </div>
-          `).join('');
-        })
-        .catch(() => {
-          document.getElementById('posts-container').innerHTML =
-            '<div class="empty-state">nothing here yet -- check back soon.</div>';
-        });
+      const slug = new URLSearchParams(window.location.search).get('slug');
+      const container = document.getElementById('post-content');
+
+      if (!slug) {
+        container.innerHTML = '<div class="error-state">no post specified.</div>';
+      } else {
+        fetch(`blogs/${slug}.md`)
+          .then(r => {
+            if (!r.ok) throw new Error('not found');
+            return r.text();
+          })
+          .then(md => {
+            container.innerHTML = marked.parse(md);
+            const title = container.querySelector('h1');
+            if (title) {
+              document.title = title.textContent + ' - Michael Vinh Pham';
+            }
+          })
+          .catch(() => {
+            container.innerHTML = '<div class="error-state">post not found.</div>';
+          });
+      }
     </script>
   </body>
 </html>
