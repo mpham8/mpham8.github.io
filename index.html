@@ -46,36 +46,48 @@
 
       .site-header h1 {
         font-family: var(--mono);
-        font-size: 13px;
-        font-weight: normal;
-        letter-spacing: 0;
+        font-size: 15px;
+        font-weight: bold;
+        letter-spacing: 1px;
         text-transform: none;
-        color: var(--text-muted);
+        color: var(--text);
       }
 
       .site-nav {
         font-family: var(--mono);
         font-size: 12px;
-        margin-top: 6px;
+        margin-top: 10px;
+        display: inline-flex;
+        gap: 4px;
+        background: var(--bg-alt);
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        padding: 4px 6px;
       }
 
       .site-nav a {
         color: var(--text-muted);
         border-bottom: none;
-        margin: 0 8px;
+        padding: 3px 10px;
+        border-radius: 3px;
+        transition: background 0.15s, color 0.15s;
       }
 
       .site-nav a:hover {
         color: var(--accent);
+        background: var(--bg);
         border-bottom: none;
       }
 
       .site-nav a.active {
         color: var(--accent);
+        background: var(--bg);
       }
 
       .site-nav .sep {
         color: var(--border);
+        display: flex;
+        align-items: center;
       }
 
       /* --- Horizontal Rules (the 90s staple) --- */
@@ -272,7 +284,7 @@
 
       <hr>
 
-      <h2>Contact</h2>
+      <h2>Links</h2>
       <ul class="contact-list">
         <li>mpham1 (at) swarthmore (dot) edu</li>
         <li><a href="https://github.com/mpham8" target="_blank">github.com/mpham8</a></li>
