@@ -3,6 +3,6 @@
     "slug": "subway-display",
     "title": "NYC Subway Display",
     "date": "2026-02-15",
-    "description": "Weekend project, wanted to practice Cpp and try OpenMP. Will writeup about this soon."
+    "description": "Weekend project, wanted to brush up on rusty cpp and try to parallelize something with OpenMP. Will add write-up about this soon."
   }
 ]
