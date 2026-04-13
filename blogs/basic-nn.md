@@ -1,7 +1,7 @@
 # Math and Implementation of Neural Network from Scratch
 
 **Michael Pham**  
-*April 11, 2026*
+*April 12, 2026*
 
 <figure>
   <img src="blogs/basic-nn-figures/model.png" alt="784→64→10 two-layer network: input, hidden, and output blocks with weight matrices W1 and W2" />
@@ -293,7 +293,7 @@ void nn::adam(Eigen::MatrixXf &theta, Eigen::MatrixXf &m, Eigen::MatrixXf &v, co
 }
 ```
 
-and we apply this adam update to all the parameters of interest: $w^[1]$, $w^[2]$, $b^[1]$, $b^[2]$
+and we apply this adam update to all the parameters of interest: $w^{[1]}$, $w^{[2]}$, $b^{[1]}$, $b^{[2]}$
 ```cpp
 void nn::step() {
   iter += 1.0f;
