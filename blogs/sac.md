@@ -149,6 +149,7 @@ $$
 SAC uses this as a target for the value function, so the loss comes out to:
 
 $$
+\tag{5}
 J_V(\psi) = \mathbb{E}_{s_t \sim D} \left[ \frac{1}{2} \left( V_{\psi}(s_t) - \mathbb{E}_{a_t \sim \pi_\phi} \left[ Q_\theta(s_t, a_t) - \log \pi_\phi(a_t | s_t) \right] \right)^2 \right]
 $$
 
@@ -442,4 +443,10 @@ while global_step < cfg['TOTAL_ITERS']:
 
 # Application
 
-I run the above code on the Drone environment on Pufferlib and after X hours of training on my RTX 3090, I get score of 
+
+<figure>
+  <img src="blogs/sac-figures/wandb.png" alt="Score Over Time" />
+  <figcaption>Policy's Score and Perf over Time</figcaption>
+</figure>
+
+I run the above code on the Drone hover environment on Pufferlib and after 15 minutes of training on my RTX 3090, I get score of ~475 (max is 1024) and a performance score of ~0.7 (max is 1). That means that the drone was able to hover and hold its exact position for about half of the episode.

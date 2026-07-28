@@ -1,14 +1,20 @@
 [
   {
+    "slug": "sac",
+    "title": "Some Canonical RL Algos: Part 1 (SAC)",
+    "date": "2026-07-28",
+    "description": "Walking Through the Math and Implementation of Soft Actor-Critic As Simple as Possible"
+  },
+  {
+    "slug": "transformer-decoder",
+    "title": "Transformer (Decoder) in PyTorch",
+    "date": "2026-05-18",
+    "description": "Write-up coming soon - PyTorch code alongside explanation of `Attention Is All You Need`"
+  },
+  {
     "slug": "basic-nn",
     "title": "Math and Implementation of Neural Network from Scratch",
     "date": "2026-04-12",
     "description": "Wanted to brush up on neural net basics by implementing"
-  },
-  {
-    "slug": "subway-display",
-    "title": "NYC Subway Display",
-    "date": "2026-02-15",
-    "description": "Weekend project, wanted to brush up on rusty cpp and try to parallelize something with OpenMP. Will add write-up about this soon."
   }
 ]
