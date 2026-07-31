@@ -1,7 +1,7 @@
 # Some Canonical RL Algos: Part 1 (SAC)
 
 **Michael Pham**  
-*July 25, 2026*
+*July 28, 2026*
 
 <figure>
   <img src="blogs/sac-figures/pufferlib-drone.png" alt="PufferLib drone environment" />
